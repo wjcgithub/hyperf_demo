@@ -13,7 +13,6 @@ use App\Common\BaseController;
 use App\Request\ConsumerRequest;
 use App\Service\ConsumerService;
 use Hyperf\Di\Annotation\Inject;
-use Hyperf\HttpMessage\Stream\SwooleStream;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 

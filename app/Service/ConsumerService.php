@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\Service;
 
 
+use Hyperf\Utils\Coroutine;
 use Lib\Framework\BaseService;
+use XesMq\Kafka\Consumer;
 
 class ConsumerService extends BaseService
 {
@@ -24,6 +26,8 @@ class ConsumerService extends BaseService
                         'msg' => '请求参数不存在'
                     ];
                 }
+                
+                $this->exec($topic);
 
 //            $process = new Process(function (Process $worker) use ($topic) {
 //                $php = \Pool\Config::get('app.php');
@@ -69,8 +73,21 @@ class ConsumerService extends BaseService
         return $result;
     }
     
-    public function exec()
+    /**
+     * 执行具体消费方式
+     *
+     * @param array $topic
+     */
+    public function exec(array $topic)
     {
-        
+        Coroutine::create(function () {
+            $consumer = new \App\Common\Consumer();
+            $consumer->initConsumer($topic);
+            $this->coroutineRunningFlagArr[Coroutine::id()] = 1;
+            $this->topicTocoroutineMap[$topic['topic']] = Coroutine::id();
+            while ($this->coroutineRunningFlagArr[Coroutine::id()]) {
+                $consumer->consumer($topic);
+            }
+        });
     }
 }

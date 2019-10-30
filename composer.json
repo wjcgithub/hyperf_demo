@@ -26,7 +26,7 @@
         "hyperf/event": "~1.1.0",
         "hyperf/exception-handler": "~1.1.0",
         "hyperf/framework": "~1.1.0",
-        "hyperf/guzzle": "~1.1.0",
+        "hyperf/guzzle": "^1.1",
         "hyperf/http-server": "~1.1.0",
         "hyperf/logger": "~1.1.0",
         "hyperf/memory": "~1.1.0",
@@ -42,7 +42,9 @@
         "xes/rpc": "dev-master",
         "xes/sdk": "^1.1",
         "coding-cat/hyperf-skeleton": "dev-master",
-        "hyperf/validation": "^1.1"
+        "hyperf/validation": "^1.1",
+        "swlib/saber": "^1.0",
+        "xeslib/logtrace": "^0.1.14"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",

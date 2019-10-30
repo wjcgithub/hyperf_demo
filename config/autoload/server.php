@@ -39,13 +39,16 @@ return [
         'socket_buffer_size' => 2 * 1024 * 1024,
     ],
     'callbacks' => [
-        SwooleEvent::ON_BEFORE_START => [Hyperf\Framework\Bootstrap\ServerStartCallback::class, 'beforeStart'],
+        SwooleEvent::ON_BEFORE_START => [
+            Hyperf\Framework\Bootstrap\ServerStartCallback::class, 'beforeStart',
+        ],
+    
         SwooleEvent::ON_WORKER_START => [
             Hyperf\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart',
-            App\Event\WorkerCallback::class, 'onWorkerStart'
+            App\Common\WorkerCallback::class, 'tt'
         ],
         SwooleEvent::ON_PIPE_MESSAGE => [Hyperf\Framework\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
-//        SwooleEvent::ON_MANAGER_START => [App\Event\ManagerCallback::class, 'mangerStart']
+        SwooleEvent::ON_MANAGER_START => [App\Common\ManagerCallback::class, 'mangerStart']
     ],
     
 ];
